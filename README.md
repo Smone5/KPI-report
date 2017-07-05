@@ -48,18 +48,18 @@ I was able to implement a simple solution to this problem using NetworkX and a [
 
 	sorted_tree = nx.topological_sort(test_tree, reverse=True)
 
-i = 0
-while i < (len(sorted_tree)-1):
-y = sorted_tree[i]
-	parent = test_tree.predecessors(y)
+	i = 0
+	while i < (len(sorted_tree)-1):
+		y = sorted_tree[i]
+		parent = test_tree.predecessors(y)
 		
-	for j in range(len(col_names)):
-		child_value = test_tree.node[y][col_names[j]]
-		parent_value = test_tree.node[parent[0]][col_names[j]]
-		parent_total = parent_value + child_value
-		test_tree.node[parent[0]][col_names[j]] = parent_total
+		for j in range(len(col_names)):
+			child_value = test_tree.node[y][col_names[j]]
+			parent_value = test_tree.node[parent[0]][col_names[j]]
+			parent_total = parent_value + child_value
+			test_tree.node[parent[0]][col_names[j]] = parent_total
 		
-	i = i + 1
+		i = i + 1
 
 The full python script to generate the network graph tree structure and calculations can be seen here on GitHub [KPI Report]( https://github.com/Smone5/KPI-report/blob/master/kpi_python_script.py)
 
