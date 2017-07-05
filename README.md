@@ -46,7 +46,7 @@ At each node, the algorithm needed to add a value calculated at the child node t
 
 I was able to implement a simple solution to this problem using NetworkX and a [topological sort]( https://en.wikipedia.org/wiki/Topological_sorting). First, the algorithm finds all the leaf nodes in the tree structure. Once all the leaf nodes are known, the algorithm does a slightly modified reverse depth-first-search all the way to the root node at the top of the tree structure. Once the algorithm reaches the root node, the process starts over at the next leaf. This cycle is repeated until the algorithm has started at each leaf node and traveled to the root node. The Python implementation can be seen below:
 
-sorted_tree = nx.topological_sort(test_tree, reverse=True)
+	sorted_tree = nx.topological_sort(test_tree, reverse=True)
 
 i = 0
 while i < (len(sorted_tree)-1):
