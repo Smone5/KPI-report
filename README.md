@@ -17,7 +17,7 @@ I would use the tools in the following way:
 1.	Export relationship data from Oracle Primavera P6
 2.	Export node data from Oracle Primavera P6
 3.	Use VBA to clean and prepare relationship data for analysis in NetworkX
-4.	Use Python Pandas to clean prepare node data for analysis in NetworkX
+4.	Use Python, Numpy and Pandas to clean prepare node data for analysis in NetworkX
 5.	Combine relationship and node data in NetworkX
 6.	Create a customized algorithm that would traverse and calculate the data in NetworkX
 7.	Output the results of calculation in Excel for analysis
