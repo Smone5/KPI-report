@@ -10,7 +10,7 @@ In order to computationally speed up the analysis and do it more accurately I ne
 3.	[Visual Basic for Applications (VBA)](https://en.wikipedia.org/wiki/Visual_Basic_for_Applications)
 4.	[Python 2.7](https://www.python.org/)
 5.	[Pandas 0.17.1](http://pandas.pydata.org/)
-6.	[Numpy](http://pandas.pydata.org/)
+6.	[Numpy](http://www.numpy.org)
 7.	[NetworkX](https://networkx.github.io/)
 
 I would use the tools in the following way:
