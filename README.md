@@ -24,9 +24,11 @@ I would use the tools in the following way:
 
 ### Creating Relationship Data
 In order to import network graph data correctly into NetworkX, I needed the data in a one-to-one relationship format. Unfortunately, at this time the company did not have any Python software approved for use. So, I needed to go through a slow process of getting the Python software approved by IT in order to complete the project. While I was waiting for Python and NetworkX to be approved by the IT department, I decided to clean and prepare the data from Oracle Primavera P6 using a VBA script. This proved to be little trickier than I thought. When Oracle Primavera P6 outputs the data, it only allows exporting many-to-one relationships between parent nodes and child nodes from the project network. Like the example below:
-
+![many_to_one](https://github.com/Smone5/KPI-report/blob/master/images/many_to_one.png)
 
 To import the data into NetworkX the data must be formatted into a one-to-one relationship where each child node has only one parent node:
+![one_to_one_1](https://github.com/Smone5/KPI-report/blob/master/images/one_to_one_1.png)
+![one_to_one_2](https://github.com/Smone5/KPI-report/blob/master/images/one_to_one_2.png)
 
 In order to flatten the data coming from Oracle Primavera P6 Project Scheduling software I needed to make a recursive VBA script that systematically found each child node (project activity) and assigned just one parent node to it. This can be seen in the file [flatten_macro script.txt]( https://github.com/Smone5/P6-Network-Graph/blob/master/flatten_macro%20script.txt). Once the relationship data from Oracle Primavera P6 was flattened, I was able to import the data into NetworkX using a Python script.
 
@@ -35,14 +37,14 @@ The next step was to export node data from the Oracle Primavera P6. If one assum
 
 ### Combining Relationship and Node Data
 With the relationship data and node data ready, I combined the data using NetworkX. In order to make the network graph work for the algorithm I had to change the graph into a directional, tree-structure graph. At time of these calculations, the Oracle Primavera P6 schedule had over 40,000 activities and at least two to three relationships for each activity. This created a rather larger network for analysis. An image of the Oracle P6 Network graph can be seen below when the data was imported into Gephi for visual analysis (the orange dot represents the first activity in the schedule and large purple dot represents the last activity in the schedule).
-
-
+![P6_network_graph](https://github.com/Smone5/KPI-report/blob/master/images/P6_network_graph.png)
 
 ### Customized Algorithm
 This step proved to be the trickiest to complete. Going into this project I knew absolutely nothing about network graphs or network graph algorithms. I had to teach myself basic concepts by watching YouTube videos and reading books. Ultimately, I had to design an algorithm that started at the bottom of a tree structure branch at leaf nodes and traveled up the tree structure to the root node. Then repeated the process until all leaf nodes were traveled. An example can be seen below:
-
+![network_graph_1](https://github.com/Smone5/KPI-report/blob/master/images/network_graph_1.png)
 
 At each node, the algorithm needed to add a value calculated at the child node to parent node to create summarized value at the parent node all the way to root node. Essentially summarizing data from the bottom of the tree structure to the top of the tree structure. Like below:
+![network_graph_2](https://github.com/Smone5/KPI-report/blob/master/images/network_graph_2.png)
 
 I was able to implement a simple solution to this problem using NetworkX and a [topological sort]( https://en.wikipedia.org/wiki/Topological_sorting). First, the algorithm finds all the leaf nodes in the tree structure. Once all the leaf nodes are known, the algorithm does a slightly modified reverse depth-first-search all the way to the root node at the top of the tree structure. Once the algorithm reaches the root node, the process starts over at the next leaf. This cycle is repeated until the algorithm has started at each leaf node and traveled to the root node. The Python implementation can be seen below:
 
